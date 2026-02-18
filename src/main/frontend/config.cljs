@@ -53,15 +53,17 @@
 
 (goog-define ENABLE-DB-SYNC-LOCAL false)
 (defonce db-sync-local? ENABLE-DB-SYNC-LOCAL)
+(goog-define DB-SYNC-LOCAL-URL "localhost")
+(goog-define DB-SYNC-LOCAL-PORT "8787")
 
 (defonce db-sync-ws-url
   (if db-sync-local?
-    "ws://127.0.0.1:8787/sync/%s"
+    (util/format "ws://%s:%s/sync/%s" DB-SYNC-LOCAL-URL DB-SYNC-LOCAL-PORT "%s")
     "wss://logseq-sync-prod.logseq.workers.dev/sync/%s"))
 
 (defonce db-sync-http-base
   (if db-sync-local?
-    "http://127.0.0.1:8787"
+    (util/format "http://%s:%s" DB-SYNC-LOCAL-URL DB-SYNC-LOCAL-PORT)
     "https://logseq-sync-prod.logseq.workers.dev"))
 
 ;; Feature flags

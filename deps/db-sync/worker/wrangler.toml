@@ -1,4 +1,4 @@
-name = "logseq-sync"
+name = "logseq-db-sync"
 main = "dist/worker/main.js"
 compatibility_date = "2025-05-05"
 compatibility_flags = [ "nodejs_compat" ]

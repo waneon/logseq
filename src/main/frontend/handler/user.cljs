@@ -276,7 +276,8 @@
 
 (defn rtc-group?
   []
-  (boolean (seq (set/intersection (state/user-groups) #{"team" "rtc_2025_07_10"}))))
+  (or config/db-sync-local?  ; Enable sync for self-hosted users
+      (boolean (seq (set/intersection (state/user-groups) #{"team" "rtc_2025_07_10"})))))
 
 (defn alpha-user?
   []

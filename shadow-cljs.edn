@@ -46,6 +46,8 @@
                           frontend.config/ENABLE-RTC-SYNC-PRODUCTION #shadow/env ["ENABLE_RTC_SYNC_PRODUCTION" :as :bool :default true]
 
                           frontend.config/ENABLE-DB-SYNC-LOCAL #shadow/env ["ENABLE_DB_SYNC_LOCAL" :as :bool :default false]
+                          frontend.config/DB-SYNC-LOCAL-URL #shadow/env ["DB_SYNC_LOCAL_URL" :default "127.0.0.1"]
+                          frontend.config/DB-SYNC-LOCAL-PORT #shadow/env ["DB_SYNC_LOCAL_PORT" :default "8787"]
                           frontend.config/REVISION #shadow/env ["LOGSEQ_REVISION" :default "dev"]} ;; set by git-revision-hook
 
         :devtools {:before-load frontend.core/stop          ;; before live-reloading any code call this function
@@ -150,6 +152,8 @@
             frontend.config/ENABLE-RTC-SYNC-PRODUCTION #shadow/env ["ENABLE_RTC_SYNC_PRODUCTION" :as :bool :default true]
 
             frontend.config/ENABLE-DB-SYNC-LOCAL #shadow/env ["ENABLE_DB_SYNC_LOCAL" :as :bool :default false]
+            frontend.config/DB-SYNC-LOCAL-URL #shadow/env ["DB_SYNC_LOCAL_URL" :default "127.0.0.1"]
+            frontend.config/DB-SYNC-LOCAL-PORT #shadow/env ["DB_SYNC_LOCAL_PORT" :default "8787"]
             frontend.config/REVISION #shadow/env ["LOGSEQ_REVISION" :default "dev"]}
 
            :devtools {:before-load mobile.core/stop!          ;; before live-reloading any code call this function
