@@ -6,17 +6,28 @@
   outputs =
     { self, nixpkgs }:
     let
-      system = "aarch64-darwin";
-      pkgs = import nixpkgs { inherit system; };
+      systems = [
+        "aarch64-darwin"
+        "x86_64-linux"
+      ];
+      forEachSystem = f: nixpkgs.lib.genAttrs systems (system: f system);
     in
     {
-      devShells.${system}.default = pkgs.mkShellNoCC {
-        packages = with pkgs; [
-          openjdk21_headless
-          nodejs_22
-          yarn
-          clojure
-        ];
-      };
+      devShells = forEachSystem (
+        system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          default = pkgs.mkShellNoCC {
+            packages = with pkgs; [
+              openjdk21_headless
+              nodejs_22
+              yarn
+              clojure
+            ];
+          };
+        }
+      );
     };
 }
