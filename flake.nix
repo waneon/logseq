@@ -20,12 +20,22 @@
         in
         {
           default = pkgs.mkShellNoCC {
-            packages = with pkgs; [
-              openjdk21_headless
-              nodejs_22
-              yarn
-              clojure
-            ];
+            packages =
+              with pkgs;
+              [
+                openjdk21_headless
+                nodejs_22
+                yarn
+                clojure
+                just
+              ]
+              ++ lib.optionals stdenv.hostPlatform.isLinux [
+                gcc
+              ]
+              ++ lib.optionals stdenv.hostPlatform.isDarwin [
+                clang_20
+                xcbuild
+              ];
           };
         }
       );
